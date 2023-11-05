@@ -4,7 +4,7 @@
 
 Diagnosis of ocular diseases is labour-intensive. Automated segmentation of OCT (Optical coherence tomography) scans can help diagnose these diseases by showing the structure and thickness of the retinal layers. However, most segmentation methods rely on costly labeled data. This paper examines the effect of different image pretraining methods on OCT image segmentation tasks. We use a large OCT dataset with only classification labels for pretraining and a smaller OCT dataset for segmentation fine-tuning with the U-Net decoder. We compare the dice scores per layer between the pretrained and non-pretrained models. Most of the pretraining methods provide minor improvements compared to the baseline on a dataset that is very homogeneous, with the best results from PLC pretraining and from pretraining on the labeled classification problem via transfer learning.
 
-[View the full paper]()
+[View the full paper](https://github.com/J-HyperNova/OCT-Pretraining/blob/main/paper.pdf)
 
 ## Structure
 
