@@ -46,3 +46,12 @@ The segmentation code takes in the following arguments:
 - `--weight_decay`: This argument sets the weight decay for the optimizer. Weight decay is a regularization technique that prevents the model from overfitting by adding a penalty to the weights. The default value is 0, which means no weight decay is applied. You can increase this value to any non-negative float to apply weight decay.
 - `--epochs`: This argument specifies the number of epochs for the training. An epoch is a complete pass through the dataset. The default value is 50, which means the model will train for 50 epochs. You can change this value to any positive integer.
 - `--patience`: This argument determines the patience for early stopping. Patience is the number of epochs to wait before stopping the training if the validation loss does not improve. The default value is 15, which means the model will stop training if the validation loss does not improve for 15 consecutive epochs. You can change this value to any positive integer. If you want to disable early stopping, you can set this value to the same value as the number of epochs.
+
+## Acknowledgements
+We made extensive use of the following repositories:
+- [BYOL](https://github.com/lucidrains/byol-pytorch)
+- [PLC](https://github.com/lucidrains/pixel-level-contrastive-learning)
+- [SimCLR](https://github.com/Spijkervet/SimCLR)
+- [PySSL](https://github.com/giakou4/pyssl)
+- [Segmentation Models](https://github.com/qubvel/segmentation_models.pytorch)
+- [YNet](https://github.com/azadef/ynet)
