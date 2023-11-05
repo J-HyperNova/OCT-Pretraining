@@ -15,15 +15,16 @@ Diagnosis of ocular diseases is labour-intensive. Automated segmentation of OCT 
 
 ### Files
 - `Segmentation.py` contains the code for the segmentation experiments, requires the pretraining experiments to be run first and models modved to correct directories. This uses the SMTorch environment.
-- `myBYOL.py` contains the code for BYOL pretraining. Uses the BYOL environment.
-- `myPLC.py` contains the code for PLC pretraining. Uses the PLC environment.
-- `mySimCLR.py` contains the code for SimCLR pretraining. Uses the SimCLR environment.
-- `myClass.py` contains the code for the classification pretraining. Uses the SMTorch environment as no major dependencies are required.
-- `myDino.py` contains the code for DINO pretraining. Uses the pyssl environment.
--  `mySimCLRv2.py` contains the code for SimCLRv2 pretraining. Uses the pyssl environment.
+- `Pretraining/myBYOL.py` contains the code for BYOL pretraining. Uses the BYOL environment.
+- `Pretraining/myPLC.py` contains the code for PLC pretraining. Uses the PLC environment.
+- `Pretraining/mySimCLR.py` contains the code for SimCLR pretraining. Uses the SimCLR environment.
+- `Pretraining/myClass.py` contains the code for the classification pretraining. Uses the SMTorch environment as no major dependencies are required.
+- `Pretraining/myDino.py` contains the code for DINO pretraining. Uses the pyssl environment.
+-  `Pretraining/mySimCLRv2.py` contains the code for SimCLRv2 pretraining. Uses the pyssl environment.
 
 ## Environments
 All of the environments can be installed in conda on python 3.8 with the enviroments specific for each python file to avoid any dependency issues.
+
 NOTE: for the pySSL environment, the pyssl package needs to be downloaded from [here](https://github.com/giakou4/pyssl) and added to the path in the code as it is not available on pip.
 
 ## Datasets
