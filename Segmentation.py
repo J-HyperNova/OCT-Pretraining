@@ -26,8 +26,7 @@ parser = parser.ArgumentParser(description='Process some integers.')
 parser.add_argument('--encoder_weights', type=str, default="None", help='pretrained weights to use')
 #batch size
 parser.add_argument('--batch_size', type=int, default=2, help='batch size')
-#early stopping
-parser.add_argument('--early_stopping', type=bool, default=True, help='early stopping')
+
 #learning rate
 parser.add_argument('--learning_rate', type=float, default=0.0007509096722414667, help='learning rate')
 #weight decay
@@ -227,27 +226,19 @@ if(encoder_weights=='imagenet'):
 model=smp.Unet(BACKBONE, encoder_weights=weights, classes=11,   activation='softmax')
 print("🔵Created model")
 if( encoder_weights=="BYOL"):  
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/BYOL_320_50_resnet50_avgpool.pth')
+    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/BYOL.pth')
     model.encoder.load_state_dict(pretrained_weights)
     print("🔵Loaded BYOL weights")
 if (   encoder_weights=="SimCLR"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/simclr_1024_45_256_0.0003.pth')
+    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/simclr.pth')
     model.encoder.load_state_dict(pretrained_weights)
     print("🔵Loaded SimCLR weights")
-if (   encoder_weights=="BYOL128Batch"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/128_50_resnet50_avgpool_BYOL.pth')
+if (encoder_weights=="PLC"):
+    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/PLC.pth')
     model.encoder.load_state_dict(pretrained_weights)
-    print("🔵Loaded BYOL 128 weights")
-if (encoder_weights=="PLC_64_"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/contrast_64_50_256_0.0001.pth')
-    model.encoder.load_state_dict(pretrained_weights)
-    print("🔵Loaded PLC 64 weights")
-if (encoder_weights=="PLC_256_"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/constrast_256_50_256_0.0001.pth')
-    model.encoder.load_state_dict(pretrained_weights)
-    print("🔵Loaded PLC 256 weights")
+    print("🔵Loaded PLC weights")
 if (encoder_weights=="DINO"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/DINO_128_50_256_0.0001.pth')
+    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/DINO.pth')
     model.encoder.load_state_dict(pretrained_weights)
     print("🔵Loaded DINO weights")
 if (encoder_weights=="Classification"):
@@ -255,7 +246,7 @@ if (encoder_weights=="Classification"):
     model.encoder.load_state_dict(pretrained_weights)
     print("🔵Loaded Classification weights")
 if (encoder_weights=="SimCLRv2"):
-    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/simclrv2_128_50_128_0.0001.pth')
+    pretrained_weights=torch.load('/home-mscluster/jknopfmacher/Research/Segmentation/Pretrained/simclrv2.pth')
     model.encoder.load_state_dict(pretrained_weights)
     print("🔵Loaded SimCLRv2 weights")
 
@@ -265,7 +256,7 @@ lr=args.learning_rate
 epochs = args.epochs
 batch_size = args.batch_size
 weight_decay=args.weight_decay
-early_stopping=args.early_stopping
+
 patience=args.patience
 metrics = [
     smp.utils.metrics.IoU(threshold=0.5),
@@ -309,7 +300,7 @@ run= wandb.init(
     "batch_size": batch_size,
     "learning_rate": lr,
     "weight_decay": weight_decay,
-    "early_stopping": early_stopping,
+    "early_stopping": not patience==epochs,
     "patience": patience,
     
     }
@@ -345,7 +336,7 @@ for i in tqdm(range(epochs), colour="purple"):
         "val_f1": valid_logs['fscore'],
     })
     #check if the early stopping criteria is met
-    if early_stopping:
+    if not patience==epochs:
 
         if(valid_logs['iou_score']+valid_logs['fscore']>best_val):
             best_val=valid_logs['iou_score']+valid_logs['fscore']
@@ -365,11 +356,11 @@ if encoder_weights=="None":
     save_dir+='None/'
 elif encoder_weights=="imagenet":
     save_dir+='Imagenet/'
-elif encoder_weights=="BYOL" or encoder_weights=="BYOL128Batch":
+elif encoder_weights=="BYOL" :
     save_dir+='BYOL/'
 elif encoder_weights=="SimCLR":
     save_dir+='SIMCLR/'
-elif encoder_weights=="PLC_64_" or encoder_weights=="PLC_256_":
+elif encoder_weights=="PLC":
     save_dir+='PLC/'
 elif encoder_weights=="DINO":
     save_dir+='DINO/'
