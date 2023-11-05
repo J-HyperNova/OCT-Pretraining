@@ -39,14 +39,7 @@ run= wandb.init(
 
 def createDataloader():
     # create a dataloader
-    # augmentation=transforms.Compose([
-    #     transforms.RandomResizedCrop(128),
-    #     transforms.RandomHorizontalFlip(),
-    #     transforms.ToTensor(),
-    #     transforms.Normalize(mean=[0.485,0.456,0.406],std=[0.229,0.224,0.225])
-        
-    # ])
-    # transform=TwoCropTransform(augmentation)
+    
     transform = TransformsSimCLR(size=256)
     dataset = datasets.ImageFolder("/home-mscluster/jknopfmacher/Research/Datasets/CaliOCT/train", transform=transform)
     loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
