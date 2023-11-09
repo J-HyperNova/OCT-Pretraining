@@ -28,8 +28,8 @@ All of the environments can be installed in conda on python 3.8 with the envirom
 NOTE: for the pySSL environment, the pyssl package needs to be downloaded from [here](https://github.com/giakou4/pyssl) and added to the path in the code as it is not available on pip.
 
 ## Datasets
-- To pretrain the model, you need to download the classification `OCT2017.tar.gz` dataset from [this link](https://data.mendeley.com/datasets/rscbjbr9sj/2). 
-- To train the model, you need to use the segmentation dataset. You can find the instructions on how to download and unzip the dataset in the YNet repository [here](https://github.com/azadef/ynet/tree/master#datasets-downloading-and-preproccesing). You only need the 2015_BOE_Chiu dataset for the segmentation experiments.
+- To pretrain the encoders, you need to download the classification `OCT2017.tar.gz` dataset from [this link](https://data.mendeley.com/datasets/rscbjbr9sj/2). 
+- To train the segmentation model, you need to use the segmentation dataset. You can find the instructions on how to download and unzip the dataset in the YNet repository [here](https://github.com/azadef/ynet/tree/master#datasets-downloading-and-preproccesing). You only need the 2015_BOE_Chiu dataset for the segmentation experiments.
 
 
 ## Notes
