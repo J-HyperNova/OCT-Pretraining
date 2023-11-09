@@ -14,7 +14,7 @@ Diagnosis of ocular diseases is labour-intensive. Automated segmentation of Opti
 - `Pretraining/` contains the code for the pretraining experiments.
 
 ### Files
-- `Segmentation.py` contains the code for the segmentation experiments, requires the pretraining experiments to be run first and models modved to correct directories. This uses the SMTorch environment.
+- `Segmentation.py` contains the code for the segmentation experiments, requires the pretraining experiments to be run first and models placed in the directories expected by the code. This uses the SMTorch environment.
 - `Pretraining/myBYOL.py` contains the code for BYOL pretraining. Uses the BYOL environment.
 - `Pretraining/myPLC.py` contains the code for PLC pretraining. Uses the PLC environment.
 - `Pretraining/mySimCLR.py` contains the code for SimCLR pretraining. Uses the SimCLR environment.
